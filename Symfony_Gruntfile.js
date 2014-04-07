@@ -4,12 +4,12 @@
 //
 'use strict';
 
-// TODO: phpmd rulesets
-//       shell trans bundlename as a cons?
-//       ftp deploy
-//       browser sync
-//       seperate sass clean cache
-//       shell -> outsourcing translation bundle target
+//
+// MANUAL: Replace all '{REPLACE}' placeholder
+//
+// TODO: Finish ftp deploy task
+//       Finish browser sync task
+//       Outsource the '.sass-cache' clean from the symfony/clean.json
 
 module.exports = function (g) {
     g.loadNpmTasks('grunt-contrib-clean');
@@ -132,8 +132,13 @@ module.exports = function (g) {
         // ------------------------------------------------------------### Shell
         //
         // WATCHOUT: Customize the shell.json file
+        //     TODO: Language and bundle name as a task parameter
         //
-        shell_cons: {"path": "<%= symfony_console %>"},
+        shell_cons: {
+            "path":         "<%= symfony_console %>",
+            "trans_lang":   "de",
+            "trans_bundle": "{REPLACE}"
+        },
         shell: g.file.readJSON('tasks/symfony/shell.json'),
     });
 

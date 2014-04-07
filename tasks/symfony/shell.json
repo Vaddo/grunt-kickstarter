@@ -6,6 +6,6 @@
         "command": "<%= shell_cons.path %> assetic:dump --env=prod --no-debug"
     },
     "trans":{
-        "command": "<%= shell_cons.path %> translation:update --clean --force de MyWebsiteBundle"
+        "command": "<%= shell_cons.path %> translation:update --clean --force <%= shell_cons.trans_lang %> <%= shell_cons.trans_bundle %>"
     }
 }
