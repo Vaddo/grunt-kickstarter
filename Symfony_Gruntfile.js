@@ -1,5 +1,5 @@
 //
-// This is a Gruntfile.js template for symfony2 projects included
+// This is a Gruntfile.js template for Symfony2 projects included
 // compass as a frontend *framework*.
 //
 'use strict';
@@ -9,6 +9,7 @@
 //       ftp deploy
 //       browser sync
 //       seperate sass clean cache
+//       shell -> outsourcing translation bundle target
 
 module.exports = function (g) {
     g.loadNpmTasks('grunt-contrib-clean');
@@ -25,7 +26,6 @@ module.exports = function (g) {
     g.loadNpmTasks('grunt-autoprefixer');
     g.loadNpmTasks('grunt-phplint');
     g.loadNpmTasks('grunt-shell');
-
 
 
     g.option( 'force', true );
@@ -65,6 +65,10 @@ module.exports = function (g) {
         },
         cssmin: g.file.readJSON('tasks/cssmin.json'),
         // --------------------------------------------------------### Image Min
+        //
+        // WATCHOUT: Minifies images in the src folder before building the
+        //           project. Prevent minifying in every build process.
+        //
         imagemin_cons: {
             "cwd":  "<%= project_source %>/src",
             "dest": "<%= project_source %>/src",
