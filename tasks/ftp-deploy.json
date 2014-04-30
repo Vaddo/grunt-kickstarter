@@ -1,11 +1,11 @@
 {
   "build": {
     "auth": {
-      "host": "<%= deploy.host %>",
-      "port": "<%= deploy.port %>",
-      "authKey": "key1"
+      "host": "<%= deploy_cons.host %>",
+      "port": "<%= deploy_cons.port %>",
+      "authKey": "<%= deploy_cons.authKey %>"
     },
-    "src": "<%= deploy.src %>",
-    "dest": "<%= deploy.dest %>"
+    "src": "<%= deploy_cons.src %>",
+    "dest": "<%= deploy_cons.dest %>"
   }
 }

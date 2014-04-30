@@ -7,8 +7,7 @@
 //
 // MANUAL: Replace all '{REPLACE}' placeholder
 //
-// TODO: Finish ftp deploy task
-//       Finish browser sync task
+// TODO: Finish browser sync task
 //       Outsource the '.sass-cache' clean from the symfony/clean.json
 
 module.exports = function (g) {
@@ -33,7 +32,7 @@ module.exports = function (g) {
         // ------------------------------------------------------------- Globals
         pkg:                 g.file.readJSON('package.json'),
         project_root_folder: "..",
-        project_browser_url: "http://localhost/hal/app_dev.php",
+        project_browser_url: "http://localhost/{REPLACE}/app_dev.php",
         project_source:      "<%= project_root_folder %>/source",
         project_dist:        "<%= project_root_folder %>/dist",
 
@@ -140,6 +139,19 @@ module.exports = function (g) {
             "trans_bundle": "{REPLACE}"
         },
         shell: g.file.readJSON('tasks/symfony/shell.json'),
+        // -------------------------------------------------------### FTP deploy
+        //
+        // WATCHOUT: File '.ftppass' with authentication information is needed.
+        //           Use the '.ftppass.skel' file as a template
+        //
+        deploy_cons: {
+            "host":    "{REPLACE}",
+            "port":    21,
+            "src":     "<%= project_dist %>",
+            "dest":    "html/{REPLACE}",
+            "authKey": "key1"
+        },
+        'ftp-deploy': g.file.readJSON('tasks/ftp-deploy.json'),
     });
 
 
@@ -165,7 +177,7 @@ module.exports = function (g) {
     g.registerTask('cache',   ['clean:cache']);
     g.registerTask('trans',   ['shell:trans']);
     g.registerTask('md',   ['phpmd']);
+    g.registerTask('deploy', ['ftp-deploy']);
 
-    // g.registerTask('deploy', ['ftp-deploy']);
     // g.registerTask('front-test', ['browserSync:test']);
 };
