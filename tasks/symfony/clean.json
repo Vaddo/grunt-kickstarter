@@ -18,6 +18,7 @@
                     "<%= clean_cons.dist %>/*.md",
                     "<%= clean_cons.dist %>/app/cache/*",
                     "<%= clean_cons.dist %>/app/logs/*",
+                    "<%= clean_cons.dist %>/app/config/parameters.yml.dist",
                     "<%= clean_cons.dist %>/**/sass",
                     "<%= clean_cons.dist %>/**/sprites*/",
                     "<%= clean_cons.dist %>/**/styles",
